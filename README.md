@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Telecam Sistem SL - Sitio Web Corporativo
 
-## Getting Started
+Proyecto Next.js (App Router) desarrollado para **Telecam Sistem SL**, centrado en ofrecer una experiencia premium de seguridad residencial e industrial.
 
-First, run the development server:
+## Stack Tecnológico
+- **Framework:** Next.js (App Router, Reac 19)
+- **Lenguaje:** TypeScript
+- **Estilos:** Vanilla CSS moderno (Grid, Flexbox, Custom Properties) sin Tailwind.
+- **Formularios:** Client-side form con envío a API Route (`/api/lead`).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Instrucciones de Instalación Local
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Arrancar modo desarrollo:**
+   ```bash
+   npm run dev
+   ```
+   Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. **Construir para producción:**
+   ```bash
+   npm run build
+   ```
+   > Esto verifica Typescript y ESLint, además de compilar y optimizar la web.
 
-## Learn More
+4. **Arrancar entorno de producción local:**
+   ```bash
+   npm run start
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## Cómo Desplegar en Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Vercel es el entorno nativo de Next.js. El flujo ideal es conectar este repositorio de GitHub:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Sube el código a GitHub:**
+   Crea un repositorio en GitHub, inicializa localmente con `git init`, haz add/commit y pushea tu código a `main`.
+2. **Conecta en Vercel:**
+   - Inicia sesión en [Vercel](https://vercel.com).
+   - Haz click en "Add New..." -> "Project".
+   - Importa tu repositorio de GitHub "telecam-sistem".
+   - Vercel detectará automáticamente que es un proyecto de Next.js.
+   - Presiona "Deploy".
 
-## Deploy on Vercel
+Tras 1 o 2 minutos, el sitio web estará en vivo con HTTPS automático.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notas sobre el Backend para Emails
+Actualmente la ruta `/api/lead` valida y visualiza los datos en la consola (server logs). Para que lleguen al email (`info@telecamsistem.com`):
+1. Crea una cuenta gratuita en [Resend](https://resend.com) u otra alternativa SMTP.
+2. Agrega la clave API de Resend en `.env.local`
+3. Instala el SDK de resend (`npm install resend`) y añade la lógica de envío en `app/api/lead/route.ts` en la línea marcada como "// TO DO para el futuro: Integrar Resend".

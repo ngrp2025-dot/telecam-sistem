@@ -1,0 +1,92 @@
+.footer {
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 4rem 0 2rem;
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  /* 3 columnas en desktop */
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centrado dentro de la columna */
+  text-align: center;
+}
+
+.footer-logo-link {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.footer-logo-wrap {
+  position: relative;
+  width: 360px;
+  height: 80px;
+}
+
+.footer-logo {
+  object-fit: cover !important;
+  object-position: left center !important;
+}
+
+.email-link {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.email-link:hover {
+  text-decoration: underline;
+}
+
+.footer-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centrado en desktop y mobile */
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+/* Mobile: pasa a 1 columna (y ya está todo centrado) */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-logo-wrap {
+    /* Mismo ajuste en mobile que el header */
+    width: 260px;
+    height: 60px;
+  }
+}

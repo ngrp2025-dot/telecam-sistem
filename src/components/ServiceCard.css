@@ -1,0 +1,45 @@
+.service-card {
+    background-color: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(0, 153, 255, 0.3);
+}
+
+.service-card-icon {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(0, 78, 154, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.icon-placeholder {
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary);
+    border-radius: 4px;
+}
+
+.service-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.service-card-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}

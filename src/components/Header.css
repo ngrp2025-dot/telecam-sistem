@@ -1,0 +1,52 @@
+.header {
+    background-color: var(--surface);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+    .header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+}
+
+.logo-link{
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+/* Caja del logo (define el tamaño visible) */
+.logo{
+  width: 360px !important;
+  height: 80px !important;
+  object-fit: cover !important;
+  object-position: left center !important;
+  display: block;
+}
+
+
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+@media (max-width: 640px){
+  .header-inner{ height: 86px; }
+  .logo{ width: 260px; height: 56px; }
+}
