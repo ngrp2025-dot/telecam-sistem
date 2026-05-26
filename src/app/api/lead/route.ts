@@ -1,8 +1,18 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
+const DESTINATION_EMAIL = 'info@telecamsistem.com';
+
 const resend = new Resend(process.env.RESEND_API_KEY);
-const contactEmail = process.env.CONTACT_EMAIL || 'info@telecamsistem.com'; // Fallback if not set
+
+// Use env var if valid, otherwise use hardcoded destination
+function getContactEmail(): string {
+    const envEmail = (process.env.CONTACT_EMAIL || '').trim();
+    if (envEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(envEmail)) {
+        return envEmail;
+    }
+    return DESTINATION_EMAIL;
+}
 
 export async function POST(request: Request) {
     try {
@@ -12,6 +22,8 @@ export async function POST(request: Request) {
         if (!data.name || !data.phone || !data.email || !data.city || !data.service || !data.contactPreference || !data.privacyAccept) {
             return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
         }
+
+        const contactEmail = getContactEmail();
 
         // Console log the payload for verification
         console.log(`[${new Date().toISOString()}] === Nuevo Lead Recibido ===`);
@@ -27,9 +39,12 @@ export async function POST(request: Request) {
 
         // Enviar email usando Resend
         console.log('Intentando enviar email a:', contactEmail);
+        console.log('RESEND_API_KEY presente:', !!process.env.RESEND_API_KEY);
+        console.log('CONTACT_EMAIL raw:', JSON.stringify(process.env.CONTACT_EMAIL));
+        
         const { data: emailData, error } = await resend.emails.send({
             from: 'Telecam Sistem <onboarding@resend.dev>',
-            to: [contactEmail],
+            to: contactEmail,
             subject: `Nuevo Lead: ${data.service} - ${data.name}`,
             html: `
                 <h2>Nuevo cliente interesado desde la web</h2>
@@ -50,7 +65,7 @@ export async function POST(request: Request) {
         });
 
         if (error) {
-            console.error('❌ Error de Resend:', error);
+            console.error('❌ Error de Resend:', JSON.stringify(error));
             return NextResponse.json({ error: 'Error al enviar el email', details: error }, { status: 500 });
         }
 
